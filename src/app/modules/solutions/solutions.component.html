@@ -1,0 +1,15 @@
+<div class="container inner-content">
+  <div class="mb-lg-5" *ngIf="solution$ | async as solution">
+    <div class="solution solution-card solution--{{slug}}">
+      <h2 class="text-uppercase mb-4 fs-30 font-weight-normal title-1">{{solution.title}}</h2>
+      <ul class="solution__list mb-4">
+        <li *ngFor="let item of solution.list">{{item}} </li>
+      </ul>
+      <a class="btn btn-submit btn-large text-uppercase fractured" [fracturedText]="'Подключиться' | translate | async" href="#"></a>
+    </div>
+    <div class="d-flex justify-content-between solution--add-info">
+      <div class="solution-card"></div>
+      <div class="solution-card"></div>
+    </div>
+  </div>
+</div>

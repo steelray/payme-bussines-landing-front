@@ -1,0 +1,84 @@
+<div class="container inner-content">
+  <div class="all-news-header d-flex justify-content-between">
+    <h2 class="blog-title">{{'Все статьи' | translate | async}}</h2>
+    <div class="search">
+      <input class="form-control" [formControl]="searchControl" type="text" placeholder="{{'Поиск' | translate | async}}">
+      <button mat-icon-button class="search-btn">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="posts$ | async as allPosts">
+    <div class="row newest-posts mb-5">
+      <div class="col-md-4" *ngFor="let posts of allPosts.topPosts">
+        <a
+          *ngFor="let post of posts; trackBy: trackByFn" 
+          [routerLink]="['/blog', post.slug]" 
+          class="post-item"
+          [class.__single-item]="posts.length === 1">
+          <picture class="post-item__img" *ngIf="post.pictures.length">
+            <source *ngIf="post.pictures.length === 2" [attr.srcset]="post.pictures[1]" type="image/webp">
+            <source [attr.srcset]="post.pictures[0]" type="image/jpeg"> 
+            <img [src]="post.pictures[0]" [alt]="post.title">
+          </picture>
+          <div class="post-item__details d-flex justify-content-end flex-column">
+            <div class="post-item__tags" *ngIf="post?.tags?.length">
+              <span 
+                *ngFor="let tag of post.tags"
+                setRandomTagClass>#{{tag.title}}</span>
+            </div>
+            <div class="post-item__title">{{post.title}}</div>
+            <div class="post-item__published-at">
+              {{post.published_at * 1000 | localizedDate}}
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  
+    <div class="row posts">
+      <div class="col-md-4" *ngFor="let post of allPosts.otherPosts; trackBy: trackByFn">
+        <div class="post-item">
+          <picture class="post-item__img" *ngIf="post.pictures.length">
+            <source *ngIf="post.pictures.length === 2" [attr.srcset]="post.pictures[1]" type="image/webp">
+            <source [attr.srcset]="post.pictures[0]" type="image/jpeg"> 
+            <img [src]="post.pictures[0]" [alt]="post.title">
+          </picture>
+          <div class="post-item__tags" *ngIf="post?.tags?.length">
+            <span 
+              *ngFor="let tag of post.tags"
+              setRandomTagClass
+              class="__orange">#{{tag.title}}</span>
+          </div>
+          <a class="post-item__title" [routerLink]="['/blog', post.slug]">
+            {{post.title}}
+          </a>
+          <div class="post-author">
+            <div>
+              <img src="/assets/images/temp/1.jpg">
+            </div>
+            {{'Автор' | translate | async}} <span>{{post.author.first_name + ' ' + post.author.last_name }}</span> - {{post.published_at * 1000 | localizedDate}}
+          </div>
+          <p>
+            {{post.description}}
+          </p>
+          <a [routerLink]="['/blog', post.slug]" class="post-item__read-more">
+            {{'Подробнее' | translate | async}}
+          </a>
+        </div>
+      </div>
+      
+    </div>
+    <ng-container *ngIf="totalCount > limit">
+      <ng-container *ngFor="let i of paginationArr | paginate: { 
+        itemsPerPage: limit, 
+        currentPage: page, 
+        totalCount: totalCount 
+      } "></ng-container>
+      <pagination-controls (pageChange)="onPageChange($event)" [previousLabel]="'Пред' | translate | async" [nextLabel]="'След' | translate | async"></pagination-controls>
+    </ng-container>
+
+  </ng-container>
+  
+</div>

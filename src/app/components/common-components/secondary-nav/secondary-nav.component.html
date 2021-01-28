@@ -1,0 +1,8 @@
+<nav *ngIf="solutions$ | async as solutions" class="secondary-nav">
+  <div class="container">
+    <ul  class="d-flex align-items-center" data-parent="#solutions-nav-item">
+      <li *ngFor="let solution of solutions"><a [routerLink]="['/solutions', solution.slug]" routerLinkActive="active">{{solution.title}}</a></li>
+    </ul>
+  </div>
+  <button class="btn btn-block secondary-nav-toggle"><i class="glyphicon glyphicon-chevron-up-custom"><span class="sp-1"></span><span class="sp-2"></span></i></button>
+</nav>

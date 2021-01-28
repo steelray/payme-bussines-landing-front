@@ -9,7 +9,8 @@
         "@schematics/angular:component": {
           "style": "scss",
           "changeDetection": "OnPush",
-          "skipTests": true
+          "skipTests": true,
+          "displayBlock": true
         }
       },
       "root": "",
@@ -38,7 +39,10 @@
                 "src/scss/"
               ]
             },
-            "scripts": []
+            "scripts": [
+              "src/assets/js/vendors.js",
+              "src/assets/js/main.js"
+            ]
           },
           "configurations": {
             "production": {
