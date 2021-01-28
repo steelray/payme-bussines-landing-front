@@ -1,0 +1,25 @@
+<app-top-block></app-top-block>
+<div class="container">
+  <section class="payme-business-choice-reason">
+    <div class="payme-business-choice-reason__inner text-center" *ngIf="aboutPayme$ | async as aboutPayme">
+      <h2 class="fs-30 text-uppercase font-weight-normal title-1">{{aboutPayme.title}}</h2>
+      <div [innerHTML]="aboutPayme.content | safeHtml"></div>
+      <a class="text-uppercase btn btn-submit btn-large fractured" [fracturedText]="'Попробовать демо' | translate | async" href="#"></a>
+    </div>
+  </section>
+  <section class="payment-solutions mb-lg-5">
+    <h2 class="title-1 text-uppercase text-center font-weight-normal">{{'решения для оплаты и приема платежей' | translate | async}}</h2>
+    <div class="d-flex flex-wrap justify-content-between" *ngIf="solutions$ | async as solutions">
+      <div class="payment-solution check-visibility" *ngFor="let solution of solutions">
+        <div class="d-flex mb-3 align-items-center justify-content-between payment-solution__header">
+          <svg class="icon icon-{{solution.icon}} ">
+            <use [attr.xlink:href]="'/assets/images/sprite.svg#' + solution.icon"></use>
+          </svg>
+          <a class="payment-solution__info-link text-uppercase fractured" [fracturedText]="'Подробнее' | translate | async" [routerLink]="['/solutions', solution.slug]"></a>
+        </div>
+        <h3 class="mb-2 text-uppercase font-weight-normal payment-solution__title">{{solution.title + (solution.sub_title || '')}}</h3>
+        <div class="payment-solution__desc">{{solution.description}}</div>
+      </div>
+    </div>
+  </section>
+</div>

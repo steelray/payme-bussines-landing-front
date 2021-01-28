@@ -1,0 +1,18 @@
+<div class="container inner-content">
+  <h2 class="title-1 text-uppercase font-weight-normal __trainig-title">{{'Обучение' | translate | async}}</h2>
+  <ul class="training" *ngIf="videos$ | async as videos"> 
+    <li class="d-flex" *ngFor="let video of videos; trackBy: trackByFn">
+      <div class="training__body">
+        <div class="text-uppercase mb-3 training__title">{{video.title}}</div>
+        <div class="training__text">{{video.description}}</div>
+      </div>
+      <div class="training__video">
+        <div class="embed-responsive embed-responsive-16by9">
+          <div class="close"></div>
+          <div [innerHTML]="video.code | safeHtml"></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="backdrop"></div>
+</div>

@@ -1,0 +1,32 @@
+<nav class="main-nav d-flex flex-fill">
+  <ul class="d-flex"> 
+    <li class="main-nav__item"><a id="solutions-nav-item" routerLinkActive="active" [routerLink]="['/solutions', 'autopay']">{{'Решения' | translate | async}}</a></li>
+    <li class="main-nav__item"><a  routerLinkActive="active" [routerLink]="'/blog'">{{'блог' | translate | async}}</a></li>
+    <li class="main-nav__item"><a href="https://help.paycom.uz/ru" target="_blank" >{{'Разработчикам' | translate | async}}</a></li>
+    <li class="main-nav__item"><a routerLinkActive="active" [routerLink]="['/suppliers']">{{'Поставщики' | translate | async}}</a></li>
+    <li class="main-nav__item"><a  [routerLink]="['/tutorial']">{{'Обучение' | translate | async}}</a></li>
+    <li class="main-nav__item"><a class="__dropdown-link"  href="#">{{'Контакты' | translate | async}}</a>
+      <div class="main-nav__item__dropdown __dropdown">
+        <div class="mb-2">
+          <div >{{'Телефон службы поддержки' | translate | async}}:</div>
+          <div><a class="__large" href="tel:+99878150‑22‑24">+998 78 150‑22‑24 </a></div>
+        </div>
+        <div class="mb-4">
+          <div >{{'Адрес' | translate | async}}: </div>
+          <div >{{'address' | translate | async}}</div>
+        </div>
+        <div class="mb-2" >{{'По техническим вопросам' | translate | async}}:</div>
+        <div class="mb-2"> 
+          <div >{{'contact1' | translate | async}}</div>
+          <div><a href="tel:+998998440224">+998 99 844 02 24 </a></div>
+          <div><a href="mailto:salikh.sayfutdinov@payme.uz">salikh.sayfutdinov@payme.uz </a></div>
+        </div>
+        <div> 
+          <div >{{'contact2' | translate | async}} </div>
+          <div> <a href="tel:+998974627755">+998 97 462 77 55</a></div>
+          <div><a href="mailto:acherevatyy@payme.uz">acherevatyy@payme.uz </a></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>

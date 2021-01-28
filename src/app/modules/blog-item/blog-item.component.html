@@ -1,0 +1,46 @@
+<div class="container inner-content" *ngIf="post$ | async as post">
+  <h1 class="blog-title">
+    {{post.title}}
+  </h1>
+  <div class="post-author mb-5">
+    <div>
+      <img [src]="post.author.avatar">
+    </div>
+    {{'Автор' | translate | async}} <span>{{post.author.first_name + ' ' + post.author.last_name}}</span> - {{post.published_at * 1000 | localizedDate}}
+  </div>
+  <div class="post-text" [innerHTML]="post.content | safeHtml"></div>
+  <div class="share-buttons">
+    <!-- Facebook -->
+    <a href="http://www.facebook.com/sharer.php?u={{currentLocation}}" target="_blank">
+        <img src="/assets/images/facebook.png" alt="Facebook" />
+    </a>
+    
+    <!-- Google+ -->
+    <a href="https://plus.google.com/share?url={{currentLocation}}" target="_blank">
+        <img src="/assets/images/google.png" alt="Google" />
+    </a>
+    
+       
+    <!-- Twitter -->
+    <a href="https://twitter.com/share?url={{currentLocation}}&amp;text={{post.title}}&amp;hashtags=PayMe.uz" target="_blank">
+        <img src="/assets/images/twitter.png" alt="Twitter" />
+    </a>
+    
+    <!-- VK -->
+    <a href="http://vkontakte.ru/share.php?url={{currentLocation}}" target="_blank">
+        <img src="/assets/images/vk.png" alt="VK" />
+    </a>
+    
+    <!-- Email -->
+    <a href="mailto:?Subject=Simple Share Buttons&amp;Body={{currentLocation}}">
+        <img src="/assets/images/email.png" alt="Email" />
+    </a>
+
+
+    <!-- Print -->
+    <a href="javascript:;" onclick="window.print()">
+        <img src="/assets/images/print.png" alt="Print" />
+    </a>
+ 
+  </div>
+</div>
